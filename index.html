@@ -10,7 +10,7 @@ const did=x=>String(x.driver_id??x.user_id??x.id??x.driver?.id??'');
 const nm=x=>x.driver_name??x.name??x.username??x.driver?.name??did(x);
 const pos=x=>x.position??x.place??x.rank;
 const lap=x=>x.best_lap_time??x.best_lap??x.fastest_lap;
-const time=x=>x.time??x.total_time??x.race_time??x.finish_time??null;
+const time=x=>x.race_time??x.total_time??x.time??x.finish_time??null;
 function fmt(t){if(t===null||t===undefined||!Number.isFinite(Number(t)))return '—';let n=Number(t);return Math.floor(n/60)+':'+(n%60).toFixed(2).padStart(5,'0')}
 function raceLabel(r,i){return r.title??r.name??('Race '+(i+1))}
 function driverStats(){let races=data.races??[],map={};races.forEach((r,i)=>rs(r).forEach(x=>{let id=did(x);if(!id)return;let d=map[id]??={id,name:nm(x),entered:0,wins:0,podiums:0,finishes:[],byRace:{}};d.name=nm(x);d.entered++;let p=pos(x);d.byRace[i]=p??'DNF';if(Number.isFinite(Number(p))&&p!==null&&p!==undefined){p=Number(p);d.finishes.push(p);if(p===1)d.wins++;if(p<=3)d.podiums++}}));return Object.values(map).map(d=>({...d,missed:races.length-d.entered,avg:d.finishes.length?d.finishes.reduce((a,b)=>a+b,0)/d.finishes.length:Infinity}))}
