@@ -4473,7 +4473,7 @@
           "name": "talia",
           "pos": 6,
           "time": 3932.22,
-          "lap": 109.0,
+          "lap": 109,
           "dnf": false,
           "missed": false,
           "penalty": false
@@ -4871,7 +4871,7 @@
         },
         {
           "id": "4426174",
-          "name": "4426174",
+          "name": "Mazarinen",
           "pos": 10,
           "time": 3876.49,
           "lap": 179.67,
